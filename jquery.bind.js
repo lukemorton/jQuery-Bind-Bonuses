@@ -38,8 +38,7 @@
      * @return  this
      */
     $.fn.bindStop = function (event, callback, delay) {
-
-        var delay = calcDuration(delay);
+        delay = calcDuration(delay);
         
         return this.each(function () {
             var self = this;
@@ -70,8 +69,7 @@
      * @return  this
      */
     $.fn.bindThrottle = function (event, callback, delay) {
-
-        var delay = calcDuration(delay);
+        delay = calcDuration(delay);
         
         return this.each(function () {
             var self = this;

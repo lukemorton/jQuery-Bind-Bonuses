@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Some jQuery Bind Bonus</title>
+    </head>
+    <body>
+        <h1>jQuery Bind</h1>
+        <p>
+            <input id="throttle" />
+            <span id="throttle-result"></span>
+        </p>
+        <p>
+            <input id="stop" />
+            <span id="stop-result"></span>
+        </p>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script src="jquery.bind.js"></script>
+        <script>
+            $(function () {
+                $('#throttle').bindThrottle('keydown', function () {
+                    console.log($(this).val());
+                });
+                $('#stop').bindStop('keydown', function () {
+                    console.log($(this).val());
+                });
+            });
+        </script>
+    </body>
+</html>

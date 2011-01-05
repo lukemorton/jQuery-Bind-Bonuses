@@ -15,7 +15,34 @@
  *
  * @author   Luke Morton, 2011
  * @license  MIT
- */ 
+ */
+    /**
+     * Bind on event stop
+     *
+     * This method waits until delay time after the last
+     * occurance of event, then calls the callback.
+     *
+     * @param   string    jQuery event, e.g. 'click', 'keydown'
+     * @param   object    jQuery event data
+     * @param   callback  Callback function
+     * @param   mixed     jQuery duration, e.g. 'slow', 'fast'
+     *                    or an integer (milliseconds)
+     * @return  this
+     */
+    /**
+     * Throttle bound events
+     *
+     * This method only calls a callback if the event hasn't
+     * been called in the last delay. If it has been called
+     * it waits until after the throttle time to call it.
+     *
+     * @param   string    jQuery event, e.g. 'click', 'keydown'
+     * @param   object    jQuery event data
+     * @param   callback  Callback function
+     * @param   mixed     jQuery duration, e.g. 'slow', 'fast'
+     *                    or an integer (milliseconds)
+     * @return  this
+     */
 
 (function ($) {
 
@@ -25,68 +52,49 @@
             duration in $.fx.speeds ? $.fx.speeds[duration] : $.fx.speeds._default;
     };
 
-    /**
-     * Bind on event stop
-     *
-     * This method waits until delay time after the last
-     * occurance of event, then calls the callback.
-     *
-     * @param   string    jQuery event, e.g. 'click', 'keydown'
-     * @param   callback  Callback function
-     * @param   mixed     jQuery duration, e.g. 'slow', 'fast'
-     *                    or an integer (milliseconds)
-     * @return  this
-     */
-    $.fn.bindStop = function (event, callback, delay) {
-        delay = calcDuration(delay);
+    // Lets do both at the same time :)
+    $.each(['bindStop', 'bindThrottle'], function (i, name) {
+        $.fn[name] = function (eventType, eventData, handler, delay) {
         
-        return this.each(function () {
-            var self = this;
-            var timer;
-            $(self).bind(event, function (e) {
-                if (timer) {
-                    clearTimeout(timer);
-                }
-                timer = setTimeout(function () {
-                    callback.call(self, e);
-                }, delay);
-            });
-        });
-        
-    };
-
-    /**
-     * Throttle bound events
-     *
-     * This method only calls a callback if the event hasn't
-     * been called in the last delay. If it has been called
-     * it waits until after the throttle time to call it.
-     *
-     * @param   string    jQuery event, e.g. 'click', 'keydown'
-     * @param   callback  Callback function
-     * @param   mixed     jQuery duration, e.g. 'slow', 'fast'
-     *                    or an integer (milliseconds)
-     * @return  this
-     */
-    $.fn.bindThrottle = function (event, callback, delay) {
-        delay = calcDuration(delay);
-        
-        return this.each(function () {
-            var self = this;
-            var timer;
-            $(self).bind(event, function (e) {
-                if ( ! timer) {
-                    callback.call(self, e);
-                } else {
-                    clearTimeout(timer);
+            // Work out the various parameters
+            if ( ! handler) {
+                handler = eventData;
+            } else if ( ! delay && typeof eventData !== 'object') {
+                delay = handler;
+                handler = eventData;
+            }
+            
+            // Get delay
+            delay = calcDuration(delay);
+            
+            return this.each(function () {
+                var self = this;
+                var timer;
+                var throttle;
+                
+                $(self).bind(eventType, function (e) {
+                    // We make a note of throttling and only run
+                    // handler when not throttling
+                    if (name === 'bindThrottle' && ! throttle) {
+                        handler.call(self, e);
+                        throttle = setTimeout(function () {
+                            throttle = null;
+                        }, delay);
+                    }
+                    
+                    // Every event clears previous timer
+                    if (timer) {
+                        clearTimeout(timer);
+                    }
+                    
+                    // Set a fresh timer
                     timer = setTimeout(function () {
-                        timer = null;
-                        callback.call(self, e);
+                        handler.call(self, e);
                     }, delay);
-                }
+                });
             });
-        });
-
-    };
+            
+        };
+    });
     
 }(this.jQuery));

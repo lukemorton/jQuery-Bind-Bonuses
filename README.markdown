@@ -5,14 +5,14 @@ now Bind Bonuses they are!
 
 ## The methods
 
-### $.fn.bindStop
+### $.fn.bindStop( eventType, [ eventData ], handler(eventObject), [ delay ] )
     
 This method waits until `delay` ms after the last occurance of
 event, then calls the callback. So if you are continously typing
 only after you have stopped for the defined `delay` will the
 handler be called.
 
-### $.fn.bindThrottle
+### $.fn.bindThrottle( eventType, [ eventData ], handler(eventObject), [ delay ] )
 
 This method only calls a callback if the event hasn't been
 called in the last `delay` ms. If it has been called it waits 

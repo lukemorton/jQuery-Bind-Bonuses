@@ -17,7 +17,7 @@
  * @license  MIT
  */
     /**
-     * Bind on event stop
+     * $.fn.bindStop
      *
      * This method waits until delay time after the last
      * occurance of event, then calls the callback.
@@ -30,7 +30,7 @@
      * @return  this
      */
     /**
-     * Throttle bound events
+     * $.fn.bindThrottle
      *
      * This method only calls a callback if the event hasn't
      * been called in the last delay. If it has been called

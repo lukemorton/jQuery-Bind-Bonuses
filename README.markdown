@@ -1,1 +1,21 @@
-# jQuery Bind BonusesI didn't know what else to call these jQuery additions. So fornow Bind Bonuses they are!## $.fn.bindStop    This method waits until delay time after the lastoccurance of event, then calls the callback.@param   | string    | jQuery event, e.g. 'click', 'keydown'@param   | object    | jQuery event data@param   | callback  | Callback function@param   | mixed     | jQuery duration, e.g. 'slow', 'fast'         |           | or an integer (milliseconds)@return  | this      | -Peace xxLuke
+# jQuery Bind Bonuses
+
+I didn't know what else to call these jQuery additions. So for
+now Bind Bonuses they are!
+
+## $.fn.bindStop
+    
+This method waits until delay time after the last
+occurance of event, then calls the callback.
+
+@param   | string    | jQuery event, e.g. 'click', 'keydown'
+@param   | object    | jQuery event data
+@param   | callback  | Callback function
+@param   | mixed     | jQuery duration, e.g. 'slow', 'fast'
+         |           | or an integer (milliseconds)
+@return  | this      | -
+
+
+
+Peace xx
+Luke

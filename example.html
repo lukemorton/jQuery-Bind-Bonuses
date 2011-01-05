@@ -6,10 +6,12 @@
     <body>
         <h1>jQuery Bind</h1>
         <p>
+            <label for="throttle">On event throttle:</label>
             <input id="throttle" />
             <span id="throttle-result"></span>
         </p>
         <p>
+            <label for="stop">On event stop:</label>
             <input id="stop" />
             <span id="stop-result"></span>
         </p>
@@ -18,10 +20,10 @@
         <script>
             $(function () {
                 $('#throttle').bindThrottle('keydown', function () {
-                    console.log($(this).val());
+                    $('#throttle-result').html($(this).val());
                 });
                 $('#stop').bindStop('keydown', function () {
-                    console.log($(this).val());
+                    $('#stop-result').html($(this).val());
                 });
             });
         </script>

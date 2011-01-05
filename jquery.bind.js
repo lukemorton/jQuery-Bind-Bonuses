@@ -1,5 +1,6 @@
 /**
  * jQuery Bind Bonuses
+ * https://github.com/DrPheltRight/jQuery-Bind-Bonuses
  *
  * This jQuery plugin (if you can call it that) adds two methods
  * to your toolkit. The first bindStop, is like bind apart from
@@ -7,7 +8,7 @@
  * callback. Example uses include form validation. The second is
  * bindThrottle that throttles events.
  *
- * Both methods unlike bind accept a third parameter, "delay",
+ * Both methods unlike bind accept a fourth parameter, "delay",
  * which is the amount of time they wait until they call your
  * callback.
  *
@@ -16,34 +17,7 @@
  * @author   Luke Morton, 2011
  * @license  MIT
  */
-    /**
-     * $.fn.bindStop
-     *
-     * This method waits until delay time after the last
-     * occurance of event, then calls the callback.
-     *
-     * @param   string    jQuery event, e.g. 'click', 'keydown'
-     * @param   object    jQuery event data
-     * @param   callback  Callback function
-     * @param   mixed     jQuery duration, e.g. 'slow', 'fast'
-     *                    or an integer (milliseconds)
-     * @return  this
-     */
-    /**
-     * $.fn.bindThrottle
-     *
-     * This method only calls a callback if the event hasn't
-     * been called in the last delay. If it has been called
-     * it waits until after the throttle time to call it.
-     *
-     * @param   string    jQuery event, e.g. 'click', 'keydown'
-     * @param   object    jQuery event data
-     * @param   callback  Callback function
-     * @param   mixed     jQuery duration, e.g. 'slow', 'fast'
-     *                    or an integer (milliseconds)
-     * @return  this
-     */
-
+ 
 (function ($) {
 
     // Get jQuery duration

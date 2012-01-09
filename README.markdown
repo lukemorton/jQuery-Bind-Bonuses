@@ -1,5 +1,10 @@
 # jQuery Bind Bonuses
 
+**This tiny project of mine has been superceded by WhiteRabbit.
+It can does the same job but also caters for event delegation.**
+
+https://github.com/DrPheltRight/whiterabbit
+
 I didn't know what else to call these jQuery additions. So for
 now Bind Bonuses they are!
 
